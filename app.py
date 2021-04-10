@@ -8,6 +8,7 @@ Author: Raja CSP
 from flask import Flask,render_template, jsonify
 import random
 import json
+import business
 
 app  = Flask(__name__)
 PORT = 3091
@@ -30,14 +31,8 @@ http://0.0.0.0:3091/api/data
 @app.route("/api/data", methods=["GET"])
 def api_get_data():
 
-    ontario_data = [20113, 21019, 22037, 22844, 23903]
 
-    quebec_data = [600, 1000, 642, 897, 689]
-
-    result_dict = {
-        'ontario' : ontario_data,
-        'quebec'  : quebec_data
-    }
+    result_dict = business.get_data()
 
     return jsonify(result_dict)
 
