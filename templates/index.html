@@ -55,67 +55,98 @@
             Tourist count in canada
         </p>
     </figure>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
+
+$( document ).ready(function() {
+        // console.log( "ready!" );
+
+        get_data();
+    });
+
+    function get_data(){
+
+        url = "/api/data"
+
+        var myusername = $("#username").val();
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: myusername,
+            cache: false,
+            success: function(data){
+                // $("#resultarea").text(data);
+                console.log(data);
+
+                plot_chart(data);
+            }
+        });
+    } //- get data
+
+    function plot_chart(data){
+
+    
+
         Highcharts.chart('container', {
 
-title: {
-    text: 'Tourism in Canada'
-},
-
-
-yAxis: {
-    title: {
-        text: 'Number of Tourists'
-    }
-},
-
-xAxis: {
-    accessibility: {
-        rangeDescription: 'Range: 2010 to 2015'
-    }
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
+        title: {
+            text: 'Tourism in Canada'
         },
-        pointStart: 2010
-    }
-},
 
 
-series: [{
-    name: 'Ontario',
-    data: [20113, 21019, 22037, 22844, 23903]
-}, {
-    name: 'Quebec',
-    data: [10000, 11000, 6542, 8907, 6782]
-}, ],
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
+        yAxis: {
+            title: {
+                text: 'Number of Tourists'
             }
-        }
-    }]
-}
+        },
 
-});
+        xAxis: {
+            accessibility: {
+                rangeDescription: 'Range: 2010 to 2015'
+            }
+        },
+
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 2010
+            }
+        },
+
+
+        series: [{
+            name: 'Ontario',
+            data: data['ontario']
+        }, {
+            name: 'Quebec',
+            data: data['quebec']
+        }, ],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+        });
+    }
 
 </script>
 </body>

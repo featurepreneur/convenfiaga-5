@@ -5,7 +5,7 @@ Author: Raja CSP
 
 
 '''
-from flask import Flask,render_template
+from flask import Flask,render_template, jsonify
 import random
 import json
 
@@ -32,14 +32,14 @@ def api_get_data():
 
     ontario_data = [20113, 21019, 22037, 22844, 23903]
 
-    quebec_data = [10000, 11000, 6542, 8907, 6782]
+    quebec_data = [600, 1000, 642, 897, 689]
 
     result_dict = {
         'ontario' : ontario_data,
         'quebec'  : quebec_data
     }
 
-    return result_dict
+    return jsonify(result_dict)
 
 
 if __name__ == "__main__":
