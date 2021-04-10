@@ -31,11 +31,13 @@ def add_row(year, ontario_tourist, quebec_tourist):
         'quebec':quebec_tourist
     }
 
+    print(df)
+
     df = df.append(new_row, ignore_index=True)
 
-    
+    print(df)
 
-    df.to_csv('data.csv', index = True)
+    df.to_csv('data.csv')
 
 '''
 new_row = {'name':'Geo', 'physics':87, 'chemistry':92, 'algebra':97}
