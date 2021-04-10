@@ -20,6 +20,30 @@ def get_data():
 
     return result_dict
 
+def add_row(year, ontario_tourist, quebec_tourist):
+    
+    df = pd.read_csv('data.csv') 
+
+    new_row = {
+    
+        'year':year, 
+        'ontario':ontario_tourist, 
+        'quebec':quebec_tourist
+    }
+
+    df = df.append(new_row, ignore_index=True)
+
+    
+
+    df.to_csv('data.csv', index = True)
+
+'''
+new_row = {'name':'Geo', 'physics':87, 'chemistry':92, 'algebra':97}
+#append row to the dataframe
+df_marks = df_marks.append(new_row, ignore_index=True)
+'''
+    
+
 if __name__ == "__main__":
 
     get_data()
